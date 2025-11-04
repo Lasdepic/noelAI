@@ -18,7 +18,6 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-// Mount user routes (register, login, profile)
 app.use("/", userRoutes);
 
 
