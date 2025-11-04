@@ -2,14 +2,25 @@ import express, { json } from "express";
 import ollama from "ollama";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
+import cors from "cors";
+import dotenv from "dotenv";
+import helmet from "helmet";
 import { connectDB } from "./config/database.js";
+import userRoutes from "./routes/userRoutes.js";
 
 configDotenv();
 
 connectDB();
 
 const app = express();
+
+app.use(cors());
+app.use(helmet());
 app.use(express.json());
+
+// Mount user routes (register, login, profile)
+app.use("/", userRoutes);
+
 
 const PORT = 3000;
 
